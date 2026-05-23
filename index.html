@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Sea Slug Fact</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+            color: #0c4a6e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            color: #0284c7;
+            margin-top: 0;
+            font-size: 2rem;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+        .date {
+            font-size: 0.9rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="date" id="current-date">Today</div>
+        <h1>Daily Sea Slug Fact 🌟</h1>
+        <p id="fact-placeholder">Loading a brilliant slug fact...</p>
+    </div>
+
+    <script>
+        // ADD YOUR SEA SLUG FACTS TO THIS LIST!
+        const slugFacts = [
+            "Some sea slugs (sacoglossans) steal chloroplasts from algae and literally photosynthesize like plants!",
+            "The Blue Dragon sea slug eats venomous Portuguese man-o-wars and stores their stinging cells in its own 'fingers' for defense.",
+            "Nudibranchs are famous for their incredibly bright colors, which warn predators that they are highly toxic and taste terrible.",
+            "The Janolus sea slug looks like a glowing, spiky sci-fi creature, covered in translucent cerata that help it breathe.",
+            "Sea slugs are simultaneous hermaphrodites, meaning they possess both male and female reproductive organs at the same time."
+        ];
+
+        function getDailyFact() {
+            const today = new Date();
+            
+            // Format the date for the display card
+            const options = { month: 'long', day: 'numeric', year: 'numeric' };
+            document.getElementById('current-date').innerText = today.toLocaleDateString('en-US', options);
+
+            // Use a mathematical trick to pick a consistent fact for the day
+            // (Year * 365 + Month * 31 + Day) gives us a unique number for every day
+            const uniqueDayNumber = (today.getFullYear() * 365) + (today.getMonth() * 31) + today.getDate();
+            const factIndex = uniqueDayNumber % slugFacts.length;
+
+            // Display the fact
+            document.getElementById('fact-placeholder').innerText = slugFacts[factIndex];
+        }
+
+        // Run the function when the page loads
+        getDailyFact();
+    </script>
+</body>
+</html>
